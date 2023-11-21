@@ -1,0 +1,86 @@
+public class MergeSort {
+    private int numeroElementos;
+    private int vetor[];
+
+    MergeSort(int numeroElementos, int vetor[]) {
+        this.numeroElementos = numeroElementos;
+        this.vetor = vetor;
+    }
+
+    int meio, i, j,k;
+    long trocas=0,comparacoes=0;
+    
+    public void ordenarVetorMerge(int vetor[], int esquerda, int direita) {
+        if (esquerda < direita) {
+            meio = (esquerda + direita) / 2;
+            ordenarVetorMerge(vetor, esquerda, meio);
+            ordenarVetorMerge(vetor, meio + 1, direita);
+            juntarVetores(vetor, esquerda, meio, direita);
+        }
+    }
+
+    private void juntarVetores(int vetor[], int esquerda, int meio, int direita) {
+        int n1, n2;
+        n1 = meio - esquerda + 1;
+        n2 = direita - meio;
+
+        int vetorEsquerda[] = new int[n1];
+        int vetorDireita[] = new int[n2];
+
+        for (i = 0; i < n1; ++i) {
+            vetorEsquerda[i] = vetor[esquerda + i];
+        }
+        for (j = 0; j < n2; ++j) {
+            vetorDireita[j] = vetor[meio + 1 + j];
+        }
+
+        i = 0;
+        j = 0;
+        k = esquerda;
+
+        while (i < n1 && j < n2) {
+            if (i < n1 && (j >= n2 || vetorEsquerda[i] <= vetorDireita[j])) {
+                comparacoes++;
+                vetor[k] = vetorEsquerda[i];
+                i++;
+                trocas++;
+            } else {
+                vetor[k] = vetorDireita[j];
+                j++;
+                trocas++;
+            }
+
+            k++;
+        }
+
+        // Copia os elementos restantes do vetorEsquerda (se houver)
+        while (i < n1) {
+            vetor[k] = vetorEsquerda[i];
+            i++;
+            k++;
+        }
+
+        // Copia os elementos restantes do vetorDireita (se houver)
+        while (j < n2) {
+            vetor[k] = vetorDireita[j];
+            j++;
+            k++;
+        }
+    }
+    
+    public long getTrocas() {
+        return trocas;
+    }
+
+    public long getComparacoes() {
+        return comparacoes;
+    }
+    
+    public void mostraVetor() {
+        for (i = 0; i < numeroElementos; ++i) {
+            System.out.print(vetor[i] + " ");
+        }
+
+        System.out.println();
+    }
+}
