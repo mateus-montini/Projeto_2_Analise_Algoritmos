@@ -1,0 +1,39 @@
+public class SelectionSort {
+    
+    private int numeroElementos;
+    private int vetor[];
+
+    SelectionSort(int numeroElementos, int vetor[]) {
+        this.numeroElementos = numeroElementos;
+        this.vetor = vetor;
+    }
+
+    int i, j, indiceMenor, temp;
+    long trocas=0, comparacoes=0;
+
+    public void ordenarVetorSelection() {
+        for (i = 0; i < numeroElementos - 1; i++) {
+            indiceMenor = i;
+            for (j = i + 1; j < numeroElementos; j++) {
+                if (vetor[j] < vetor[indiceMenor]) {
+                    comparacoes++;
+                    indiceMenor = j;
+                }
+            }
+
+            temp = vetor[indiceMenor];
+            vetor[indiceMenor] = vetor[i];
+            vetor[i] = temp;
+            trocas++;
+        }
+        System.out.println("Numero de trocas = " + trocas);
+        System.out.println("Numero de comparações = " + comparacoes);
+    }
+    
+    public void mostraVetor() {
+        for (i = 0; i < numeroElementos; ++i) {
+            System.out.print(vetor[i] + " ");
+        }
+        System.out.println();
+    }
+}
