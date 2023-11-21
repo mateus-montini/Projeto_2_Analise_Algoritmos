@@ -1,0 +1,339 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class AlgBuscas {
+
+    public static void main(String[] agrs) {
+        int entrada;
+        long tempoInicial = 0, tempoFinal = 0;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("COMPARATIVO ALGORITMOS DE ORDENAÇÃO");
+        System.err.println("APERTE ENTER PARA CONTINUAR");
+        sc.nextLine();
+        limparTela();
+
+        entrada = 1000; //altere para 10.000 e 100.000 
+
+        //teste 1  melhor caso(vetor em ordem crescente)
+
+        System.out.println("Caso 1 : melhor caso (vetor ordenado)");
+        System.out.println();
+
+        BubbleSort bubbleSort1 = new BubbleSort(entrada, criarVetorOrdenado(entrada));
+        ImprovedBubbleSort improvedBubbleSort1 = new ImprovedBubbleSort(entrada, criarVetorOrdenado(entrada));
+        InsertionSort insertionSort1 = new InsertionSort(entrada, criarVetorOrdenado(entrada));
+        MergeSort mergeSort1 = new MergeSort(entrada, criarVetorOrdenado(entrada));
+        QuickSort quickSort1 = new QuickSort(entrada, criarVetorOrdenado(entrada));
+        SelectionSort selectionSort1 = new SelectionSort(entrada, criarVetorOrdenado(entrada));
+        ShellSort shellSort1 = new ShellSort(entrada, criarVetorOrdenado(entrada));
+
+        tempoInicial = System.currentTimeMillis();
+        System.out.println("BUBBLE SORT");
+        bubbleSort1.ordenarVetorBubble();
+        tempoFinal = System.currentTimeMillis();
+        System.out.println("Tempo de execução = " + (tempoFinal - tempoInicial) + " ms");
+        System.out.println();
+
+        tempoInicial = 0;
+        tempoFinal = 0;
+
+        tempoInicial = System.currentTimeMillis();
+        System.out.println("IMPROVED BUBBLE SORT");
+        improvedBubbleSort1.ordenarVetorImprovedBubble();
+        tempoFinal = System.currentTimeMillis();
+        System.out.println("Tempo de execução = " + (tempoFinal - tempoInicial) + " ms");
+        System.out.println();
+
+        tempoInicial = 0;
+        tempoFinal = 0;
+
+        tempoInicial = System.currentTimeMillis();
+        System.out.println("INSERTION SORT");
+        insertionSort1.ordenarVetorInsertion();
+        tempoFinal = System.currentTimeMillis();
+        System.out.println("Tempo de execução = " + (tempoFinal - tempoInicial) + " ms");
+        System.out.println();
+
+        tempoInicial = 0;
+        tempoFinal = 0;
+        
+        tempoInicial = System.currentTimeMillis();
+        System.out.println("MERGE SORT");
+        mergeSort1.ordenarVetorMerge(criarVetorOrdenado(entrada), 0, entrada - 1);
+        tempoFinal = System.currentTimeMillis();
+        System.out.println("Numero de trocas = " + mergeSort1.getTrocas());
+        System.out.println("Numero de comparações = " + mergeSort1.getComparacoes());
+        System.out.println("Tempo de execução = " + (tempoFinal - tempoInicial) + " ms");
+        System.out.println();
+
+        tempoInicial = 0;
+        tempoFinal = 0;
+
+        tempoInicial = System.currentTimeMillis();
+        System.out.println("QUICK SORT");
+        QuickSort.ordenarVetorQuick(criarVetorOrdenado(entrada));
+        tempoFinal = System.currentTimeMillis();
+        System.out.println("Tempo de execução = " + (tempoFinal - tempoInicial) + " ms");
+        System.out.println("Numero de trocas = " + quickSort1.getTrocas());
+        System.out.println("Numero de comparações = " + quickSort1.getComparacoes());
+        System.out.println();
+
+        tempoInicial = 0;
+        tempoFinal = 0;
+
+        tempoInicial = System.currentTimeMillis();
+        System.out.println("SELECTION SORT");
+        selectionSort1.ordenarVetorSelection();
+        tempoFinal = System.currentTimeMillis();
+        System.out.println("Tempo de execução = " + (tempoFinal - tempoInicial) + " ms");
+        System.out.println();
+
+        tempoInicial = 0;
+        tempoFinal = 0;
+
+        tempoInicial = System.currentTimeMillis();
+        System.out.println("SHELL SORT");
+        shellSort1.ordenarVetorShell();
+        tempoFinal = System.currentTimeMillis();
+        System.out.println("Tempo de execução = " + (tempoFinal - tempoInicial) + " ms");
+        System.out.println();
+
+        tempoInicial = 0;
+        tempoFinal = 0;
+
+        System.err.println("APERTE ENTER PARA CONTINUAR");
+        sc.nextLine();
+        limparTela();
+
+        //teste 2 caso médio (vetor com números aleatórios)
+        
+        System.out.println("Caso 2 : caso médio (vetor aleatório)");
+        System.out.println();
+
+        BubbleSort bubbleSort2 = new BubbleSort(entrada, criarVetorAleatorio(entrada));
+        ImprovedBubbleSort improvedBubbleSort2 = new ImprovedBubbleSort(entrada, criarVetorAleatorio(entrada));
+        InsertionSort insertionSort2 = new InsertionSort(entrada, criarVetorAleatorio(entrada));
+        MergeSort mergeSort2 = new MergeSort(entrada, criarVetorAleatorio(entrada));
+        QuickSort quickSort2 = new QuickSort(entrada, criarVetorAleatorio(entrada));
+        SelectionSort selectionSort2 = new SelectionSort(entrada, criarVetorAleatorio(entrada));
+        ShellSort shellSort2 = new ShellSort(entrada, criarVetorAleatorio(entrada));
+
+        tempoInicial = System.currentTimeMillis();
+        System.out.println("BUBBLE SORT");
+        bubbleSort2.ordenarVetorBubble();
+        tempoFinal = System.currentTimeMillis();
+        System.out.println("Tempo de execução = " + (tempoFinal - tempoInicial) + " ms");
+        System.out.println();
+
+        tempoInicial = 0;
+        tempoFinal = 0;
+
+        tempoInicial = System.currentTimeMillis();
+        System.out.println("IMPROVED BUBBLE SORT");
+        improvedBubbleSort2.ordenarVetorImprovedBubble();
+        tempoFinal = System.currentTimeMillis();
+        System.out.println("Tempo de execução = " + (tempoFinal - tempoInicial) + " ms");
+        System.out.println();
+
+        tempoInicial = 0;
+        tempoFinal = 0;
+
+        tempoInicial = System.currentTimeMillis();
+        System.out.println("INSERTION SORT");
+        insertionSort2.ordenarVetorInsertion();
+        tempoFinal = System.currentTimeMillis();
+        System.out.println("Tempo de execução = " + (tempoFinal - tempoInicial) + " ms");
+        System.out.println();
+
+        tempoInicial = 0;
+        tempoFinal = 0;
+        
+        tempoInicial = System.currentTimeMillis();
+        System.out.println("MERGE SORT");
+        mergeSort2.ordenarVetorMerge(criarVetorAleatorio(entrada), 0, entrada - 1);
+        tempoFinal = System.currentTimeMillis();
+        System.out.println("Numero de trocas = " + mergeSort2.getTrocas());
+        System.out.println("Numero de comparações = " + mergeSort2.getComparacoes());
+        System.out.println("Tempo de execução = " + (tempoFinal - tempoInicial) + " ms");
+        System.out.println();
+
+        tempoInicial = 0;
+        tempoFinal = 0;
+
+        tempoInicial = System.currentTimeMillis();
+        System.out.println("QUICK SORT");
+        QuickSort.ordenarVetorQuick(criarVetorAleatorio(entrada));
+        tempoFinal = System.currentTimeMillis();
+        System.out.println("Numero de trocas = " + quickSort2.getTrocas());
+        System.out.println("Numero de comparações = " + quickSort2.getComparacoes());
+        System.out.println("Tempo de execução = " + (tempoFinal - tempoInicial) + " ms");
+        System.out.println();
+
+        tempoInicial = 0;
+        tempoFinal = 0;
+
+        tempoInicial = System.currentTimeMillis();
+        System.out.println("SELECTION SORT");
+        selectionSort2.ordenarVetorSelection();
+        tempoFinal = System.currentTimeMillis();
+        System.out.println("Tempo de execução = " + (tempoFinal - tempoInicial) + " ms");
+        System.out.println();
+
+        tempoInicial = 0;
+        tempoFinal = 0;
+
+        tempoInicial = System.currentTimeMillis();
+        System.out.println("SHELL SORT");
+        shellSort2.ordenarVetorShell();
+        tempoFinal = System.currentTimeMillis();
+        System.out.println("Tempo de execução = " + (tempoFinal - tempoInicial) + " ms");
+        System.out.println();
+
+        tempoInicial = 0;
+        tempoFinal = 0;
+
+        System.err.println("APERTE ENTER PARA CONTINUAR");
+        sc.nextLine();
+        limparTela();
+
+        //teste 3 pior caso (vetor em ordem decrescente) 
+
+        System.out.println("Caso 3 : pior caso (vetor ordenado decrescente)");
+        System.out.println();
+
+        BubbleSort bubbleSort3 = new BubbleSort(entrada, criarVetorDecrescente(entrada));
+        ImprovedBubbleSort improvedBubbleSort3 = new ImprovedBubbleSort(entrada, criarVetorDecrescente(entrada));
+        InsertionSort insertionSort3 = new InsertionSort(entrada, criarVetorDecrescente(entrada));
+        MergeSort mergeSort3 = new MergeSort(entrada, criarVetorDecrescente(entrada));
+        QuickSort quickSort3 = new QuickSort(entrada, criarVetorDecrescente(entrada));
+        SelectionSort selectionSort3 = new SelectionSort(entrada, criarVetorDecrescente(entrada));
+        ShellSort shellSort3 = new ShellSort(entrada,criarVetorDecrescente(entrada));
+
+        tempoInicial = System.currentTimeMillis();
+        System.out.println("BUBBLE SORT");
+        bubbleSort3.ordenarVetorBubble();
+        tempoFinal = System.currentTimeMillis();
+        System.out.println("Tempo de execução = " + (tempoFinal - tempoInicial) + " ms");
+        System.out.println();
+
+        tempoInicial = 0;
+        tempoFinal = 0;
+
+        tempoInicial = System.currentTimeMillis();
+        System.out.println("IMPROVED BUBBLE SORT");
+        improvedBubbleSort3.ordenarVetorImprovedBubble();
+        tempoFinal = System.currentTimeMillis();
+        System.out.println("Tempo de execução = " + (tempoFinal - tempoInicial) + " ms");
+        System.out.println();
+
+        tempoInicial = 0;
+        tempoFinal = 0;
+
+        tempoInicial = System.currentTimeMillis();
+        System.out.println("INSERTION SORT");
+        insertionSort3.ordenarVetorInsertion();
+        tempoFinal = System.currentTimeMillis();
+        System.out.println("Tempo de execução = " + (tempoFinal - tempoInicial) + " ms");
+        System.out.println();
+
+        tempoInicial = 0;
+        tempoFinal = 0;
+        
+        tempoInicial = System.currentTimeMillis();
+        System.out.println("MERGE SORT");
+        mergeSort3.ordenarVetorMerge(criarVetorDecrescente(entrada), 0, entrada - 1);
+        tempoFinal = System.currentTimeMillis();
+        System.out.println("Numero de trocas = " + mergeSort3.getTrocas());
+        System.out.println("Numero de comparações = " + mergeSort3.getComparacoes());
+        System.out.println("Tempo de execução = " + (tempoFinal - tempoInicial) + " ms");
+        System.out.println();
+
+        tempoInicial = 0;
+        tempoFinal = 0;
+
+        tempoInicial = System.currentTimeMillis();
+        System.out.println("QUICK SORT");
+        QuickSort.ordenarVetorQuick(criarVetorDecrescente(entrada));
+        tempoFinal = System.currentTimeMillis();
+        System.out.println("Numero de trocas = " + quickSort3.getTrocas());
+        System.out.println("Numero de comparações = " + quickSort3.getComparacoes());
+        System.out.println("Tempo de execução = " + (tempoFinal - tempoInicial) + " ms");
+        System.out.println();
+
+        tempoInicial = 0;
+        tempoFinal = 0;
+
+        tempoInicial = System.currentTimeMillis();
+        System.out.println("SELECTION SORT");
+        selectionSort3.ordenarVetorSelection();
+        tempoFinal = System.currentTimeMillis();
+        System.out.println("Tempo de execução = " + (tempoFinal - tempoInicial) + " ms");
+        System.out.println();
+
+        tempoInicial = 0;
+        tempoFinal = 0;
+
+        tempoInicial = System.currentTimeMillis();
+        System.out.println("SHELL SORT");
+        shellSort3.ordenarVetorShell();
+        tempoFinal = System.currentTimeMillis();
+        System.out.println("Tempo de execução = " + (tempoFinal - tempoInicial) + " ms");
+        System.out.println();
+
+        tempoInicial = 0;
+        tempoFinal = 0;
+
+        System.err.println("APERTE ENTER PARA CONTINUAR");
+        sc.nextLine();
+        limparTela();
+        System.out.println("FIM DAS COMPARAÇÕES");
+        sc.close();
+    }
+    
+    static int[] criarVetorOrdenado(int tamanho) {
+        int[] vetor = new int[tamanho];
+
+        for (int i = 0; i < tamanho; i++) {
+            vetor[i] = i + 1;
+        }
+        return vetor;
+    }
+
+    static int[] criarVetorAleatorio(int tamanho) {
+        int[] vetor = new int[tamanho];
+        Random random = new Random();
+
+        for (int i = 0; i < tamanho; i++) {
+            vetor[i] = random.nextInt(tamanho);
+        }
+
+        return vetor;
+    }
+
+    static int[] criarVetorDecrescente(int tamanho) {
+        int vetor[] = new int[tamanho];
+        int indice = 0;
+        indice = tamanho;
+        for (int i = 0; i < tamanho; i++) {
+            vetor[i] = indice - 1;
+            indice--;
+        }
+
+        return vetor;
+    }
+    
+    public static void limparTela() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+}
