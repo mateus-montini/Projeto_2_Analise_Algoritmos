@@ -1,0 +1,86 @@
+import java.util.Stack;
+
+public class QuickSort {
+    
+    private int numeroElementos;
+    private int vetor[];
+
+    QuickSort(int numeroElementos, int vetor[]) {
+        this.numeroElementos = numeroElementos;
+        this.vetor = vetor;
+    }
+
+    int indiceParticao,i ,j, temp;
+    static long trocas=0;
+    static long comparacoes=0;
+
+    public static void ordenarVetorQuick(int[] vetor) {
+        if (vetor == null || vetor.length == 0) {
+            return;
+        }
+
+        Stack<Integer> pilha = new Stack<>();
+        int baixo = 0;
+        int alto = vetor.length - 1;
+
+        pilha.push(baixo);
+        pilha.push(alto);
+
+        while (!pilha.isEmpty()) {
+            alto = pilha.pop();
+            baixo = pilha.pop();
+
+            int indiceParticao = particao(vetor, baixo, alto);
+
+            if (indiceParticao - 1 > baixo) {
+                pilha.push(baixo);
+                pilha.push(indiceParticao - 1);
+            }
+
+            if (indiceParticao + 1 < alto) {
+                pilha.push(indiceParticao + 1);
+                pilha.push(alto);
+            }
+        }
+    }
+
+    private static int particao(int[] vetor, int baixo, int alto) {
+        int pivo = vetor[alto];
+        int i = (baixo - 1);
+
+        for (int j = baixo; j < alto; j++) {
+            if (vetor[j] < pivo) {
+                i++;
+                comparacoes++;
+                trocar(vetor, i, j);
+            }
+        }
+
+        trocar(vetor, i + 1, alto);
+        return i + 1;
+    }
+
+    private static void trocar(int[] vetor, int i, int j) {
+        int temp = vetor[i];
+        vetor[i] = vetor[j];
+        vetor[j] = temp;
+        trocas++;
+    }
+
+
+    public long  getTrocas() {
+        return trocas;
+    }
+
+    public long getComparacoes() {
+        return comparacoes;
+    }
+
+    public void mostraVetor() {
+        for (i = 0; i < numeroElementos; ++i) {
+            System.out.print(vetor[i] + " ");
+        }
+
+        System.out.println();
+    }
+}
