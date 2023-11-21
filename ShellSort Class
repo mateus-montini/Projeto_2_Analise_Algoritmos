@@ -1,0 +1,37 @@
+public class ShellSort {
+    
+    private int numeroElementos;
+    private int vetor[];
+
+
+    ShellSort(int numeroElementos, int vetor[]) {
+        this.numeroElementos = numeroElementos;
+        this.vetor = vetor;
+    }
+
+    int intervalo, i,j, temp;
+    long trocas = 0, comparacoes = 0;
+    
+    public void ordenarVetorShell() {
+        for (intervalo = numeroElementos / 2; intervalo > 0; intervalo /= 2) {
+            for (i = intervalo; i < numeroElementos; i++) {
+                temp = vetor[i];
+                for (j = i; j >= intervalo && vetor[j - intervalo] > temp; j -= intervalo) {
+                    comparacoes++;
+                    vetor[j] = vetor[j - intervalo];
+                }
+                vetor[j] = temp;
+                trocas++;
+            }
+        }
+        System.out.println("Numero de trocas = " + trocas);
+        System.out.println("Numero de comparações = " + comparacoes);
+    }
+
+    public void mostraVetor() {
+        for (i = 0; i < numeroElementos; ++i) {
+            System.out.print(vetor[i] + " ");
+        }
+        System.out.println();
+    }
+}
