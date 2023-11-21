@@ -1,0 +1,46 @@
+public class ImprovedBubbleSort {
+
+    private int numeroElementos;
+    private int vetor[];
+    
+    ImprovedBubbleSort(int numeroElementos, int vetor[]) {
+        this.numeroElementos = numeroElementos;
+        this.vetor = vetor;
+    }
+
+    int i, j, temp;
+    long trocas =0, comparacoes = 0;
+    boolean trocou;
+
+    public void ordenarVetorImprovedBubble() {
+
+        for (i = 0; i < numeroElementos - 1; i++) {
+            trocou = false;
+
+            for (j = 0; j < numeroElementos - i - 1; j++) {
+                if (vetor[j] > vetor[j + 1]) {
+                    comparacoes++;
+                    temp = vetor[j];
+                    vetor[j] = vetor[j + 1];
+                    vetor[j + 1] = temp;
+                    trocou = true;
+                    trocas++;
+                }
+            }
+
+            if (!trocou) {
+                break;
+            }
+        }
+        System.out.println("Numero de trocas = " + trocas);
+        System.out.println("Numero de comparações = " + comparacoes);
+    }
+    
+    public void mostraVetor() {
+        for (i = 0; i < numeroElementos; ++i) {
+            System.out.print(vetor[i] + " ");
+        }
+        System.out.println();
+    }
+
+}
